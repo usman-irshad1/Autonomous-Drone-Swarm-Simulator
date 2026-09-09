@@ -1,0 +1,69 @@
+name: Daily 1-File Release Pipeline
+
+on:
+  schedule:
+    - cron: '0 5 * * *' # Triggers daily at 05:00 UTC (10:00 AM PKT)
+  workflow_dispatch:    # Allows manual trigger from GitHub Actions UI
+
+permissions:
+  contents: write
+
+jobs:
+  release-next-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Fetch staging branch
+        run: |
+          git fetch origin staging:staging
+
+      - name: Release Next Scheduled File
+        run: |
+          python3 -c "
+          import json, subprocess, sys, datetime
+
+          with open('push_manifest.json', 'r') as f:
+              manifest = json.load(f)
+
+          target = None
+          for item in manifest:
+              if item.get('status') == 'pending':
+                  target = item
+                  break
+
+          if not target:
+              print('All scheduled files have already been released.')
+              sys.exit(0)
+
+          day = target['day']
+          files = target['files']
+          msg = target['commit_message']
+          print(f'Releasing Day {day}: {msg}')
+
+          for f in files:
+              cmd = ['git', 'checkout', 'staging', '--', f]
+              res = subprocess.run(cmd, capture_output=True, text=True)
+              if res.returncode != 0:
+                  print(f'Error checking out {f}: {res.stderr}')
+                  sys.exit(1)
+              print(f'Staged: {f}')
+
+          target['status'] = 'pushed'
+          target['pushed_at'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+          with open('push_manifest.json', 'w') as f:
+              json.dump(manifest, f, indent=2)
+
+          subprocess.run(['git', 'config', 'user.name', 'usman-irshad1'], check=True)
+          subprocess.run(['git', 'config', 'user.email', '217554659+usman-irshad1@users.noreply.github.com'], check=True)
+
+          subprocess.run(['git', 'add', 'push_manifest.json'] + files, check=True)
+          subprocess.run(['git', 'commit', '-m', msg], check=True)
+          subprocess.run(['git', 'push', 'origin', 'main'], check=True)
+          print(f'Successfully published Day {day} to main.')
+          "
