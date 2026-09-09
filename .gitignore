@@ -1,0 +1,20 @@
+# Eclipse metadata and build outputs
+.settings/
+build/
+bin/
+*.class
+
+# Simulation runtime telemetry outputs
+*.csv
+metrics.txt
+
+# Automation logs
+daily_push.log
+*.tmp
+
+# Operating System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store

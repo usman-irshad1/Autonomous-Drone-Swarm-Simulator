@@ -1,0 +1,151 @@
+﻿[
+    {
+        "day":  1,
+        "files":  [
+                      "README.md",
+                      ".gitignore",
+                      "daily_push.ps1",
+                      "setup_daily_task.ps1"
+                  ],
+        "commit_message":  "docs: initialize repository with architecture documentation, gitignore, and daily deployment automation",
+        "status":  "pushed",
+        "pushed_at":  "2026-09-09T14:54:17.6100749+05:00"
+    },
+    {
+        "day":  2,
+        "files":  [
+                      "config.txt"
+                  ],
+        "commit_message":  "feat(config): add physical parameters and fleet initialization settings",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  3,
+        "files":  [
+                      "src/application/Vector3D.java"
+                  ],
+        "commit_message":  "feat(math): implement 3D Euclidean vector algebra and operations",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  4,
+        "files":  [
+                      "src/application/DroneState.java"
+                  ],
+        "commit_message":  "feat(physics): implement 6-DOF kinematic state and SO(3) rotation matrices",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  5,
+        "files":  [
+                      "src/application/Environment.java"
+                  ],
+        "commit_message":  "feat(environment): implement 3D spatial boundaries and boundary constraints",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  6,
+        "files":  [
+                      "src/application/Controller.java"
+                  ],
+        "commit_message":  "feat(control): implement PD position, velocity, and attitude damping controller",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  7,
+        "files":  [
+                      "src/application/CollisionAvoidance.java"
+                  ],
+        "commit_message":  "feat(safety): implement artificial potential field inter-drone collision avoidance",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  8,
+        "files":  [
+                      "src/application/CommunicationModule.java"
+                  ],
+        "commit_message":  "feat(network): implement dynamic neighbor discovery and stochastic packet loss model",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  9,
+        "files":  [
+                      "src/application/FormationManager.java"
+                  ],
+        "commit_message":  "feat(swarm): implement consensus-based distributed formation control",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  10,
+        "files":  [
+                      "src/application/Logger.java"
+                  ],
+        "commit_message":  "feat(telemetry): implement CSV state recorder and simulation metrics exporter",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  11,
+        "files":  [
+                      "src/application/Drone.java"
+                  ],
+        "commit_message":  "feat(dynamics): implement 6-DOF numerical integrator and net force aggregator",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  12,
+        "files":  [
+                      "src/application/Simulator.java"
+                  ],
+        "commit_message":  "feat(engine): implement discrete-time simulation lifecycle and fleet manager",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  13,
+        "files":  [
+                      "src/application/application.css"
+                  ],
+        "commit_message":  "feat(ui): add JavaFX application stylesheet and HUD theme",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  14,
+        "files":  [
+                      "src/application/DroneGUI.java"
+                  ],
+        "commit_message":  "feat(gui): implement interactive JavaFX 3D visualization, camera control, and particle trails",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  15,
+        "files":  [
+                      "src/application/Main.java"
+                  ],
+        "commit_message":  "feat(mission): implement agricultural mission state machine and entry point",
+        "status":  "pending",
+        "pushed_at":  null
+    },
+    {
+        "day":  16,
+        "files":  [
+                      ".project",
+                      ".classpath",
+                      "build.fxbuild"
+                  ],
+        "commit_message":  "chore(build): add Eclipse IDE project descriptors and build specifications",
+        "status":  "pending",
+        "pushed_at":  null
+    }
+]
