@@ -27,7 +27,7 @@ jobs:
           python3 -c "
           import json, subprocess, sys, datetime
 
-          with open('push_manifest.json', 'r') as f:
+          with open('push_manifest.json', 'r', encoding='utf-8-sig') as f:
               manifest = json.load(f)
 
           target = None
@@ -56,7 +56,7 @@ jobs:
           target['status'] = 'pushed'
           target['pushed_at'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
-          with open('push_manifest.json', 'w') as f:
+          with open('push_manifest.json', 'w', encoding='utf-8') as f:
               json.dump(manifest, f, indent=2)
 
           subprocess.run(['git', 'config', 'user.name', 'usman-irshad1'], check=True)

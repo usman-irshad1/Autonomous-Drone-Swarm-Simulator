@@ -25,7 +25,8 @@ if (-not (Test-Path $ManifestPath)) {
     exit 1
 }
 
-$Manifest = Get-Content -Raw -Path $ManifestPath | ConvertFrom-Json
+$ManifestJson = Get-Content -Raw -Path $ManifestPath
+$Manifest = $ManifestJson | ConvertFrom-Json
 
 # Handle Status Check Mode
 if ($Status) {
@@ -85,10 +86,11 @@ if ($FilesStaged -eq 0) {
     exit 1
 }
 
-# Also stage push_manifest.json so remote maintains up-to-date queue state
+# Also stage push_manifest.json so remote maintains up-to-date queue state (no BOM)
 $TargetItem.status = "pushed"
 $TargetItem.pushed_at = (Get-Date -Format "o")
-$Manifest | ConvertTo-Json -Depth 5 | Set-Content -Path $ManifestPath -Encoding UTF8
+$Utf8NoBom = New-Object System.Text.UTF8Encoding $false
+[System.IO.File]::WriteAllText($ManifestPath, ($Manifest | ConvertTo-Json -Depth 5), $Utf8NoBom)
 git add push_manifest.json
 
 # Commit staged changes
@@ -107,6 +109,6 @@ if ($LASTEXITCODE -eq 0) {
     Write-Log "ERROR: Git push failed with exit code $LASTEXITCODE. Rolling back manifest status."
     $TargetItem.status = "pending"
     $TargetItem.pushed_at = $null
-    $Manifest | ConvertTo-Json -Depth 5 | Set-Content -Path $ManifestPath -Encoding UTF8
+    [System.IO.File]::WriteAllText($ManifestPath, ($Manifest | ConvertTo-Json -Depth 5), $Utf8NoBom)
     exit 1
 }
