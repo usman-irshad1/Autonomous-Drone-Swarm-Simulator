@@ -107,8 +107,8 @@
       "src/application/Simulator.java"
     ],
     "commit_message": "feat(engine): implement discrete-time simulation lifecycle and fleet manager",
-    "status": "pending",
-    "pushed_at": null
+    "status": "pushed",
+    "pushed_at": "2026-09-18T09:31:23.006807+00:00"
   },
   {
     "day": 13,
