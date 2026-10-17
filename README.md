@@ -21,8 +21,7 @@ A high-fidelity, physics-based 3D simulation platform for autonomous multi-rotor
 7. [Configuration Parameters](#configuration-parameters)
 8. [Prerequisites and Installation](#prerequisites-and-installation)
 9. [Building and Execution](#building-and-execution)
-10. [Automated Daily Deployment Pipeline](#automated-daily-deployment-pipeline)
-11. [License](#license)
+10. [License](#license)
 
 ---
 
@@ -283,14 +282,12 @@ Upon mission conclusion, `metrics.txt` summarizes execution integrity and fleet 
 ```
 .
 |-- .gitignore                  # Git exclusion rules for builds and logs
+|-- LICENSE                     # MIT License
 |-- README.md                   # System documentation and architecture manual
 |-- config.txt                  # Simulation runtime configuration file
 |-- .classpath                  # Eclipse IDE classpath configuration
 |-- .project                    # Eclipse IDE project descriptor
 |-- build.fxbuild               # JavaFX build task descriptor
-|-- daily_push.ps1              # Automation engine for daily scheduled commits
-|-- push_manifest.json          # Queue state for progressive daily releases
-|-- setup_daily_task.ps1        # Windows Task Scheduler registration script
 `-- src/
     `-- application/
         |-- CollisionAvoidance.java      # Artificial potential field repulsion
@@ -374,29 +371,6 @@ Simulation parameters are configured via `config.txt` without requiring re-compi
 
 ---
 
-## Automated Daily Deployment Pipeline
-
-This repository includes an automated progressive release pipeline designed to publish one file per day, maintaining structured revision history.
-
-### Pipeline Components
-- **`push_manifest.json`**: An ordered dependency queue defining the chronological release sequence across all modules.
-- **`daily_push.ps1`**: Execution script that queries the queue, commits the day's designated module with conventional commit syntax, pushes to GitHub, and updates tracking timestamps.
-- **`setup_daily_task.ps1`**: Registration script configuring a native Windows Scheduled Task (`AutonomousDroneSwarm_DailyPusher`) set to trigger automatically at 10:00 AM daily.
-
-### Triggering Manual or Scheduled Execution
-
-To execute the daily push manually:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\daily_push.ps1
-```
-
-To register or inspect the Windows Scheduled Task:
-```powershell
-powershell -ExecutionPolicy Bypass -File .\setup_daily_task.ps1
-```
-
----
-
 ## License
 
-This project is developed as an academic and engineering research simulation. Distributed under the MIT License.
+This project is developed as an academic and engineering research simulation. Distributed under the [MIT License](LICENSE).
